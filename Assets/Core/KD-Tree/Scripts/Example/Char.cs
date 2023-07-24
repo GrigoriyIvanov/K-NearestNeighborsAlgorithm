@@ -17,6 +17,8 @@ namespace Main.KDTree.Example
         {
             _destinationPoint = transform.position;
             _kdTree = _example.Tree;
+
+            nearestpointVal = new Vector3[1];
         }
 
         private void FixedUpdate()
@@ -25,13 +27,29 @@ namespace Main.KDTree.Example
 
             Move();
         }
-
+        public Vector3[] nearestpointVal;
         private void UpdateNearestPosition()
         {
-            var nearestpoint = _kdTree.SearchNearestNeighbour(new Vector2(transform.position.x, transform.position.z));
+            var nearestpoint = _kdTree.SearchNearestNeighbour(transform.position, 1);
+            
+            if (nearestpoint == null)
+                return;
 
-            _line.SetPosition(0, transform.position);
-            _line.SetPosition(1, new Vector3(nearestpoint.val.x, transform.position.y, nearestpoint.val.y));
+            nearestpointVal[0] = nearestpoint.val;
+            Debug.DrawLine(transform.position, nearestpoint.val, Color.red, Time.fixedDeltaTime);
+            //for (int i = 0; i < nearestpoint.Length; i++)
+            //{
+            //    nearestpointVal[i] = nearestpoint[i].val;
+
+            //    Debug.DrawLine(transform.position, nearestpoint[i].val, Color.red, Time.fixedDeltaTime);
+
+            //}
+            //_line.SetPosition(0, transform.position);
+            //_line.SetPosition(1, 
+            //    new Vector3(
+            //        nearestpoint.val.x, 
+            //        transform.position.y, 
+            //        nearestpoint.val.y));
         }
 
         private void Move()
@@ -40,7 +58,7 @@ namespace Main.KDTree.Example
             {
                 _destinationPoint = new Vector3(
                                         Random.Range(-70, 70),
-                                        0,
+                                        Random.Range(-70, 70),
                                         Random.Range(-70, 70));
             }
 

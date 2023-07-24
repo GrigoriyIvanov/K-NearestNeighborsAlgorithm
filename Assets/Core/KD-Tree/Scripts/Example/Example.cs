@@ -5,7 +5,6 @@ namespace Main.KDTree.Example
     public class Example : MonoBehaviour
     {
         [SerializeField] private Transform[] _points;
-        [SerializeField] private Char[] _chars;
 
         private KDTreeSearch _kdTree;
         private KDTreeConstructor _treeConstructor;
