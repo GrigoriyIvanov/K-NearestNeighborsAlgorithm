@@ -36,7 +36,7 @@ namespace Main.KDTree.Example
                 return;
 
             nearestpointVal[0] = nearestpoint.val;
-            Debug.DrawLine(transform.position, nearestpoint.val, Color.red, Time.fixedDeltaTime);
+            //Debug.DrawLine(transform.position, nearestpoint.val, Color.red, Time.fixedDeltaTime);
             //for (int i = 0; i < nearestpoint.Length; i++)
             //{
             //    nearestpointVal[i] = nearestpoint[i].val;
@@ -44,12 +44,8 @@ namespace Main.KDTree.Example
             //    Debug.DrawLine(transform.position, nearestpoint[i].val, Color.red, Time.fixedDeltaTime);
 
             //}
-            //_line.SetPosition(0, transform.position);
-            //_line.SetPosition(1, 
-            //    new Vector3(
-            //        nearestpoint.val.x, 
-            //        transform.position.y, 
-            //        nearestpoint.val.y));
+            _line.SetPosition(0, transform.position);
+            _line.SetPosition(1, nearestpoint.val);
         }
 
         private void Move()
